@@ -1,0 +1,60 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News lists</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <h1>Stay updated with our  latest news </h1>
+    <form class="formSearch" >
+      <label>Search using a key word</label>
+      <input class="topicInput" type="text" />
+      <input type="submit" class="formButton"/>
+    </form>
+
+    <div class="news-Container">
+      <h2>Search results</h2>
+      <ul class="news-list"></ul>
+    </div>
+
+    <script type="text/javascript">
+
+      let topic = topicInput.value;
+
+      import * as corsModule from 'cors';
+      const cors = corsModule({origin:'https://newsapi.org/v2/everything?q=${topic}&apiKey=d1271dc1a72149dcb4b7bb9e3006ce29'})
+      const formSearch = document.querySelector('.formSearch');
+      const topicInput = document.querySelector('.topicInput');
+      const newsList = document.querySelector('.news-list');
+
+      formSearch.addEventListener('submit', retrieve)
+      cors(request, response, async() =>{
+
+      function retrieve(e)
+      {
+          e.preventDefault()
+
+          let topic = topicInput.value;
+
+          let url = 'https://newsapi.org/v2/everything?q=${topic}&apiKey=d1271dc1a72149dcb4b7bb9e3006ce29'
+
+          fetch(url).then((res)=>{
+          return res.json()
+          }).then((data)=>{
+          console.log(data)
+          data.articles.forEach(article =>{
+          let li = document.createElement('li');
+          let a = document.createElement('a');
+          a.setAttribute('href',article.url);
+          a.setAttribute('target','_blank');
+          a.textContent = article.title;
+          li.appendChild(a);
+          newsList.appendChild(li);
+          })
+          })
+            console.log(topic)
+      }
+})
+    </script>
+  </body>

@@ -1,0 +1,24 @@
+body {
+  margin:0;
+  padding:0;
+  font-family: serif;
+}
+h1{
+  padding: 50px ;
+  background-color: #3399FF;
+  color:white;
+}
+.news-Container{
+  padding: 50px ;
+}
+.news-list{
+  padding: 50px ;
+  border: 1px solid #3399FF;
+  border-radius: 5px;
+}
+h2{
+  color: #3399FF;
+}
+.formSearch{
+  padding:50px;
+}
